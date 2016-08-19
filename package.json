@@ -1,0 +1,16 @@
+{
+  "name": "trek-middleware",
+  "version": "0.0.0",
+  "description": "The ES6 Middleware",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/trekjs/middleware.git",
+  "keywords": [
+    "trek",
+    "middleware"
+  ],
+  "author": "Fangdun Cai <cfddream@gmail.com>",
+  "license": "MIT"
+}
