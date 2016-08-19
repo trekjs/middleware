@@ -1,6 +1,5 @@
 'use strict'
 
-const compose = require('koa-compose')
 const Middleware = require('..')
 
 suite('trek-middleware', () => {
