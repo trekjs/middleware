@@ -41,7 +41,7 @@ middleware.compose(ctx).then(() => {
 ## Badges
 
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
-![](https://img.shields.io/badge/status-stable-green.svg)
+[![codecov](https://codecov.io/gh/trekjs/middleware/branch/master/graph/badge.svg)](https://codecov.io/gh/trekjs/middleware)
 
 ---
 

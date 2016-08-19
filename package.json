@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "bench": "matcha benchmarks",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc --reporter=lcov ava"
   },
   "repository": "git+https://github.com/trekjs/middleware.git",
   "keywords": [
@@ -17,6 +17,8 @@
   "author": "Fangdun Cai <cfddream@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "matcha": "0.7.0"
+    "ava": "0.16.0",
+    "matcha": "0.7.0",
+    "nyc": "8.1.0"
   }
 }
