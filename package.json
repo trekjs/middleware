@@ -1,16 +1,22 @@
 {
   "name": "trek-middleware",
   "version": "0.0.0",
-  "description": "The ES6 Middleware",
+  "description": "The Modern (ES6) Middleware Composition",
   "main": "index.js",
   "scripts": {
+    "bench": "matcha benchmarks",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "git+https://github.com/trekjs/middleware.git",
   "keywords": [
     "trek",
-    "middleware"
+    "middleware",
+    "compose",
+    "iterator"
   ],
   "author": "Fangdun Cai <cfddream@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "matcha": "0.7.0"
+  }
 }

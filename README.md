@@ -1,6 +1,6 @@
 # Middleware
 
-The ES6 Middleware.
+The Modern (ES6) Middleware Composition.
 
 ## Installation
 
