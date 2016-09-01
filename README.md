@@ -13,6 +13,7 @@ $ npm install trek-middleware
 ```js
 const Middleware = require('trek-middleware')
 const middleware = new Middleware()
+const co
 
 middleware.push((ctx, next) => {
   ctx.arr.push(1)
@@ -26,11 +27,11 @@ middleware.push(async (ctx, next) => {
   ctx.arr.push(5)
 })
 
-middleware.push(function * (ctx, next) {
+middleware.push(co.wrap(function * (ctx, next) {
   ctx.arr.push(3)
   yield next()
   ctx.arr.push(4)
-})
+}))
 
 const ctx = { arr: [] }
 middleware.compose(ctx).then(() => {

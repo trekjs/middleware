@@ -1,4 +1,5 @@
 import test from 'ava'
+import { wrap } from 'co'
 import Middleware from '..'
 
 test.beforeEach(t => {
@@ -22,11 +23,11 @@ test('middleware iterator', async t => {
     next()
     ctx.arr.push(6)
   })
-  middleware.push((ctx, next) => {
+  middleware.push(wrap(function * (ctx, next) {
     ctx.arr.push(2)
     next()
     ctx.arr.push(5)
-  })
+  }))
   middleware.push((ctx, next) => {
     ctx.arr.push(3)
     next()

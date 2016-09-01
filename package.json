@@ -18,6 +18,7 @@
   "license": "MIT",
   "devDependencies": {
     "ava": "0.16.0",
+    "co": "4.6.0",
     "matcha": "0.7.0",
     "nyc": "8.1.0"
   }
