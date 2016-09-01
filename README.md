@@ -11,9 +11,9 @@ $ npm install trek-middleware
 ## Examples
 
 ```js
+const co = require('co')
 const Middleware = require('trek-middleware')
 const middleware = new Middleware()
-const co
 
 middleware.push((ctx, next) => {
   ctx.arr.push(1)
