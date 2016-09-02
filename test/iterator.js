@@ -1,5 +1,5 @@
 import test from 'ava'
-import { wrap } from 'co'
+import co from 'co'
 import Middleware from '..'
 
 test.beforeEach(t => {
@@ -20,27 +20,29 @@ test('middleware iterator', async t => {
   const middleware = t.context
   middleware.push((ctx, next) => {
     ctx.arr.push(1)
-    next()
-    ctx.arr.push(6)
+    return next().then(() => {
+      ctx.arr.push(6)
+    })
   })
-  middleware.push(wrap(function * (ctx, next) {
+  middleware.push(async (ctx, next) => {
     ctx.arr.push(2)
-    next()
+    await next()
     ctx.arr.push(5)
-  }))
-  middleware.push((ctx, next) => {
-    ctx.arr.push(3)
-    next()
-    ctx.arr.push(4)
   })
+  middleware.push(co.wrap(function * (ctx, next) {
+    ctx.arr.push(3)
+    yield next()
+    ctx.arr.push(4)
+  }))
 
   const iter = middleware[Symbol.iterator]()
 
+  t.true(iter === middleware)
   t.is('function', typeof iter.next)
 
   const ctx = { arr: [] }
 
-  await iter.next(0, ctx)
+  await middleware.compose(ctx)
 
   t.deepEqual(ctx.arr, [1, 2, 3, 4, 5, 6])
 })
