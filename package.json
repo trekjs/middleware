@@ -1,6 +1,6 @@
 {
   "name": "trek-middleware",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The Modern (ES6) Middleware Composition",
   "main": "index.js",
   "scripts": {
