@@ -20,7 +20,7 @@ module.exports = class Middleware extends Array {
         }
         nextCalled = true
         // If you really want to use in excess of 5k middleware, ex:
-        // return i > 5120 ? Promise.resolve().then(() => this.next(++i, context, nextFunc).value) : Promise.resolve(this.next(++i, context, nextFunc).value)
+        // return i > 5120 ? Promise.resolve().then(() => this.next(i, context, nextFunc).value) : Promise.resolve(this.next(i, context, nextFunc).value)
         return Promise.resolve(this.next(i, context, nextFunc).value)
       })
     }
