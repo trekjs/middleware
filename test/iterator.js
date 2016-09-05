@@ -6,17 +6,17 @@ test.beforeEach(t => {
   t.context = new Middleware()
 })
 
-test('middleware[Symbol.iterator] should a function', t => {
+test('[Symbol.iterator] should a function', t => {
   const middleware = t.context
   t.true('function' === typeof middleware[Symbol.iterator])
 })
 
-test('middleware[Symbol.iterator]() should return self', t => {
+test('[Symbol.iterator]() should return self', t => {
   const middleware = t.context
   t.is(middleware, middleware[Symbol.iterator]())
 })
 
-test('middleware iterator', async t => {
+test('iterator', async t => {
   const middleware = t.context
   middleware.push((ctx, next) => {
     ctx.arr.push(1)
