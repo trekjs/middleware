@@ -2,7 +2,6 @@ const SYMBOL_ITERATOR = Symbol.iterator
 
 module.exports = class Middleware extends Array {
 
-
   [SYMBOL_ITERATOR] () {
     return this
   }
