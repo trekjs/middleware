@@ -6,18 +6,17 @@ module.exports = class Middleware extends Array {
     return this
   }
 
-  next (i, context, nextFunc) {
-    i |= 0
+  next (i = 0, context, nextFunc) {
     const fn = this[i] || nextFunc
-    let nextCalled = false
+    let called = false
 
     return {
       done: i++ === this.length,
       value: fn && fn(context, () => {
-        if (nextCalled) {
+        if (called) {
           throw new Error('next() called multiple times')
         }
-        nextCalled = true
+        called = true
         // If you really want to use in excess of 5k middleware, ex:
         // return i > 5120 ? Promise.resolve().then(() => this.next(i, context, nextFunc).value) : Promise.resolve(this.next(i, context, nextFunc).value)
         return Promise.resolve(this.next(i, context, nextFunc).value)
