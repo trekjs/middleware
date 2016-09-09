@@ -1,7 +1,6 @@
 module.exports = class Middleware extends Array {
 
-  next (i, context, nextFunc) {
-    i |= 0
+  next (i = 0, context, nextFunc) {
     const fn = this[i] || nextFunc
     let nextCalled = false
 
