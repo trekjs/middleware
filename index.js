@@ -4,7 +4,7 @@ module.exports = class Middleware extends Array {
 
   next (i = 0, context, last, done = false, called = false, fn) {
     done = i > this.length
-    if (done) return { done }
+    if (done) return
 
     fn = this[i] || last
 
