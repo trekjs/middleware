@@ -178,3 +178,26 @@ test('should return last return value', async t => {
   const res1 = await middleware.compose({}, next)
   t.is(res1, 1)
 })
+
+test('should not enter an infinite loop', async t => {
+  const ctx = {
+    middleware: 0,
+    next: 0
+  }
+  const middleware = Middleware.from([
+    (ctx, next) => {
+      ctx.middleware++
+      return next()
+    }
+  ])
+
+  await middleware.compose(ctx, (ctx, next) => {
+    ctx.next++
+    return next()
+  })
+
+  t.deepEqual(ctx, {
+    middleware: 1,
+    next: 1
+  })
+})
