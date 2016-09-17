@@ -6,16 +6,6 @@ test.beforeEach(t => {
   t.context = new Middleware()
 })
 
-test.skip('[Symbol.iterator] should a function', t => {
-  const middleware = t.context
-  t.true('function' === typeof middleware[Symbol.iterator])
-})
-
-test.skip('[Symbol.iterator]() should return self', t => {
-  const middleware = t.context
-  t.is(middleware, middleware[Symbol.iterator]())
-})
-
 test('iterator', async t => {
   const middleware = t.context
   middleware.push((ctx, next) => {
@@ -37,7 +27,6 @@ test('iterator', async t => {
 
   const iter = middleware[Symbol.iterator]()
 
-  // t.true(iter === middleware)
   t.is('function', typeof iter.next)
 
   const ctx = { arr: [] }

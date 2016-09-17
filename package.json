@@ -1,6 +1,6 @@
 {
   "name": "trek-middleware",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "The Modern (ES6) Middleware Composition",
   "main": "index.js",
   "scripts": {
@@ -21,6 +21,6 @@
     "co": "4.6.0",
     "koa-compose": "3.1.0",
     "matcha": "0.7.0",
-    "nyc": "8.1.0"
+    "nyc": "8.3.0"
   }
 }

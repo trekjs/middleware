@@ -2,22 +2,21 @@
 
 module.exports = class Middleware extends Array {
 
-  next (i = 0, context, last, done = false, called = false, fn) {
-    done = i > this.length
-    if (done) return
+  next (context, last, i = 0, done = false, called = false, fn = undefined) {
+    if ((done = i > this.length)) return
 
     fn = this[i] || last
 
     return fn && fn(context, () => {
       if (called) throw new Error('next() called multiple times')
       called = true
-      return Promise.resolve(this.next(i + 1, context, last))
+      return Promise.resolve(this.next(context, last, i + 1))
     })
   }
 
   compose (context, last) {
     try {
-      return Promise.resolve(this.next(0, context, last))
+      return Promise.resolve(this.next(context, last, 0))
     } catch (err) {
       return Promise.reject(err)
     }
