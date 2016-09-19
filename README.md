@@ -5,7 +5,7 @@ The Modern (ES6) Middleware Composition.
 ## Installation
 
 ```
-$ npm install trek-middleware
+$ npm install trek-middleware --save
 ```
 
 ## Examples
