@@ -6,7 +6,7 @@ test.beforeEach(t => {
   t.context = new Middleware()
 })
 
-test('iterator', async t => {
+test.skip('iterator', async t => {
   const middleware = t.context
   middleware.push((ctx, next) => {
     ctx.arr.push(1)

@@ -1,25 +1,25 @@
 'use strict'
 
-module.exports = class Middleware extends Array {
+module.exports = compose
 
-  next (context, last, i = 0, done = false, called = false, fn = undefined) {
-    if ((done = i > this.length)) return
+function next (arr, context, last, i = 0, done = false, called = false, fn = undefined) {
+  if ((done = i > arr.length)) return
 
-    fn = this[i] || last
+  fn = arr[i] || last
 
-    return fn && fn(context, () => {
-      if (called) throw new Error('next() called multiple times')
-      called = true
-      return Promise.resolve(this.next(context, last, i + 1))
-    })
+  // https://github.com/rollup/rollup/pull/774
+  // The `function` is wrapped in `()` to avoid lazy parsing it.
+  return fn && fn(context, (function () {
+    if (called) throw new Error('next() called multiple times')
+    called = true
+    return Promise.resolve(next(arr, context, last, i + 1))
+  }))
+}
+
+function compose (arr, context, last) {
+  try {
+    return Promise.resolve(next(arr, context, last, 0))
+  } catch (err) {
+    return Promise.reject(err)
   }
-
-  compose (context, last) {
-    try {
-      return Promise.resolve(this.next(context, last, 0))
-    } catch (err) {
-      return Promise.reject(err)
-    }
-  }
-
 }

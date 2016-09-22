@@ -2,7 +2,7 @@
 
 const compose = require('koa-compose')
 
-const Middleware = require('..')
+const compose2 = require('..')
 
 suite('koa-compose', () => {
   set('type', 'adaptive')
@@ -42,12 +42,13 @@ suite('trek-middleware', () => {
 
   for (let exp = 0; exp <= 13; exp++) {
     const count = Math.pow(2, exp)
-    const middleware = new Middleware()
+    const arr = []
     for (let i = 0; i < count; i++) {
-      middleware.push(fn)
+      arr.push(fn)
     }
+
     bench(`(fn * ${count})`, done => {
-      middleware.compose({}).then(done, done)
+      compose2(arr, {}).then(done, done)
     })
   }
 })
