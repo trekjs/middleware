@@ -2,11 +2,13 @@
 
 The Modern (ES6) Middleware Composition.
 
+
 ## Installation
 
-```
+```console
 $ npm install trek-middleware --save
 ```
+
 
 ## Examples
 
@@ -40,9 +42,10 @@ middleware.compose(ctx).then(() => {
 })
 ```
 
+
 ## Benchmarks
 
-```
+```console
 $ npm run bench
 ```
 
@@ -82,6 +85,7 @@ Resoults from https://travis-ci.org/trekjs/middleware.
 [![Build Status](https://travis-ci.org/trekjs/middleware.svg?branch=master)](https://travis-ci.org/trekjs/middleware)
 [![codecov](https://codecov.io/gh/trekjs/middleware/branch/master/graph/badge.svg)](https://codecov.io/gh/trekjs/middleware)
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
+
 
 ---
 
