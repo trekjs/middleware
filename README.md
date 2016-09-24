@@ -2,11 +2,13 @@
 
 The Modern (ES6) Middleware Composition.
 
+
 ## Installation
 
-```
+```console
 $ npm install trek-middleware --save
 ```
+
 
 ## Examples
 
@@ -40,9 +42,10 @@ middleware.compose(ctx).then(() => {
 })
 ```
 
+
 ## Benchmarks
 
-```
+```console
 $ npm run bench
 ```
 
