@@ -2,25 +2,32 @@
   "name": "trek-middleware",
   "version": "1.1.0",
   "description": "The Modern (ES6) Middleware Composition",
-  "main": "index.js",
-  "scripts": {
-    "bench": "matcha benchmarks",
-    "test": "nyc --reporter=lcov ava"
+  "repository": "trekjs/middleware",
+  "license": "MIT",
+  "author": {
+    "name": "Fangdun Cai",
+    "email": "cfddream@gmail.com",
+    "url": "fundon.me"
   },
-  "repository": "git+https://github.com/trekjs/middleware.git",
   "keywords": [
     "trek",
     "middleware",
     "compose",
     "iterator"
   ],
-  "author": "Fangdun Cai <cfddream@gmail.com>",
-  "license": "MIT",
+  "main": "index.js",
+  "engines": {
+    "node": ">=6"
+  },
+  "scripts": {
+    "bench": "matcha benchmarks",
+    "test": "nyc --reporter=lcov ava"
+  },
   "devDependencies": {
-    "ava": "0.16.0",
-    "co": "4.6.0",
-    "koa-compose": "3.1.0",
-    "matcha": "0.7.0",
-    "nyc": "8.3.0"
+    "ava": "0",
+    "co": "4",
+    "koa-compose": "3",
+    "matcha": "0",
+    "nyc": "8"
   }
 }
