@@ -21,13 +21,19 @@
   },
   "scripts": {
     "bench": "matcha benchmarks",
-    "test": "nyc --reporter=lcov ava"
+    "test": "nyc ava"
   },
   "devDependencies": {
-    "ava": "0",
+    "ava": "0.16",
     "co": "4",
     "koa-compose": "3",
     "matcha": "0",
-    "nyc": "8"
+    "nyc": "8.3"
+  },
+  "nyc": {
+    "reporter": [
+      "lcov",
+      "text"
+    ]
   }
 }
