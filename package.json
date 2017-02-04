@@ -24,7 +24,7 @@
     "test": "nyc ava"
   },
   "devDependencies": {
-    "ava": "0.17",
+    "ava": "0.18",
     "co": "4",
     "koa-compose": "3",
     "matcha": "0",
