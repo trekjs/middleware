@@ -16,7 +16,7 @@ module.exports = class Middleware extends Array {
 
   compose (context, last) {
     try {
-      return Promise.resolve(this.next(context, last, 0))
+      return Promise.resolve(this.next(context, last))
     } catch (err) {
       return Promise.reject(err)
     }
