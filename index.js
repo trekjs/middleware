@@ -1,3 +1,9 @@
+/*!
+ * middleware
+ * Copyright(c) 2015-2017 Fangdun Cai
+ * MIT Licensed
+ */
+
 'use strict'
 
 module.exports = class Middleware extends Array {
