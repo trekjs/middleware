@@ -24,8 +24,6 @@ middleware.push((ctx, next) => {
 })
 
 const ctx = { arr: [] }
-middleware
-  .compose(ctx)
-  .then(() => {
-    console.log(ctx.arr.toString() === '1,2,3,4,5,6')
-  })
+middleware.compose(ctx).then(() => {
+  console.log(ctx.arr.toString() === '1,2,3,4,5,6')
+})

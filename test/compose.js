@@ -6,20 +6,20 @@ test.beforeEach(t => {
   t.context = new Middleware()
 })
 
-test('should return result and not throws', t => {
+test('should return result and not throws', async t => {
   const middleware = t.context
 
-  t.notThrows(middleware.compose())
+  await t.notThrows(middleware.compose())
 })
 
-test('should return result and throws', t => {
+test('should return result and throws', async t => {
   const middleware = t.context
   middleware.push((ctx, next) => {
     ctx.a = 1
     next()
     next()
   })
-  t.throws(middleware.compose({}), 'next() called multiple times')
+  await t.throws(middleware.compose({}), 'next() called multiple times')
 })
 
 test('should work with 0 middleware', async t => {
@@ -42,14 +42,15 @@ test('should work when yielding at the end of the stack', async t => {
   t.true(called)
 })
 
-test('should reject on errors in middleware', t => {
+test('should reject on errors in middleware', async t => {
   const middleware = t.context
 
   middleware.push(async (ctx, next) => {
     throw new Error()
   })
 
-  middleware.compose({})
+  await middleware
+    .compose({})
     .then(() => {
       throw new Error('promise was not rejected')
     })
@@ -72,10 +73,12 @@ test('should keep the context', async t => {
     return next().then(() => t.is(ctx, ctx2))
   })
 
-  middleware.push(co.wrap(function * (ctx2, next) {
-    yield next()
-    t.is(ctx, ctx2)
-  }))
+  middleware.push(
+    co.wrap(function*(ctx2, next) {
+      yield next()
+      t.is(ctx, ctx2)
+    })
+  )
 
   await middleware.compose(ctx)
 })
@@ -100,7 +103,6 @@ test('should catch downstream errors', async t => {
     arr.push(4)
     throw new Error()
   })
-
 
   await middleware.compose({})
   t.deepEqual(arr, [1, 6, 4, 2, 3])

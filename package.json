@@ -24,14 +24,15 @@
     "test": "nyc ava"
   },
   "devDependencies": {
-    "ava": "0.18",
-    "co": "4",
-    "koa-compose": "3",
-    "matcha": "0",
-    "nyc": "10"
+    "ava": "0.21.0",
+    "co": "4.6.0",
+    "koa-compose": "4.0.0",
+    "matcha": "0.7.0",
+    "nyc": "11.0.3"
   },
   "nyc": {
     "reporter": [
+      "html",
       "lcov",
       "text"
     ]

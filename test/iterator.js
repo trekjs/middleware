@@ -19,11 +19,13 @@ test('iterator', async t => {
     await next()
     ctx.arr.push(5)
   })
-  middleware.push(co.wrap(function * (ctx, next) {
-    ctx.arr.push(3)
-    yield next()
-    ctx.arr.push(4)
-  }))
+  middleware.push(
+    co.wrap(function*(ctx, next) {
+      ctx.arr.push(3)
+      yield next()
+      ctx.arr.push(4)
+    })
+  )
 
   const iter = middleware[Symbol.iterator]()
 
