@@ -1,6 +1,6 @@
 {
   "name": "trek-middleware",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "The Modern (ES6) Middleware Composition",
   "repository": "trekjs/middleware",
   "license": "MIT",

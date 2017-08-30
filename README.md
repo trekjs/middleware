@@ -52,6 +52,10 @@ $ npm run bench
 Resoults from https://travis-ci.org/trekjs/middleware.
 
 ```
+1024 middlewares
+koa-compose x 777 ops/sec ±1.91% (75 runs sampled)
+trek-middleware x 829 ops/sec ±2.95% (82 runs sampled)
+Fastest is trek-middleware
 ```
 
 
