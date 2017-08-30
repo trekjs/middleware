@@ -1,53 +1,64 @@
 'use strict'
 
+const Benchmark = require('benchmark')
 const compose = require('koa-compose')
-
 const Middleware = require('..')
 
-suite('koa-compose', () => {
-  set('type', 'adaptive')
-  set('mintime', 1000)
-  set('delay', 100)
+const suite = new Benchmark.Suite()
 
-  const logic = () => Promise.resolve(true)
+const EXP = 10 // 1024
 
-  const fn = (ctx, next) => {
-    return logic().then(next).then(logic)
-  }
+console.log('1024 middlewares')
 
-  for (let exp = 0; exp <= 13; exp++) {
-    const count = Math.pow(2, exp)
-    const arr = []
-    for (let i = 0; i < count; i++) {
-      arr.push(fn)
+suite
+  .add(
+    'koa-compose',
+    deferred => {
+      const logic = () => Promise.resolve(true)
+
+      const fn = (ctx, next) => {
+        return logic().then(next).then(logic)
+      }
+
+      const count = Math.pow(2, EXP)
+      const arr = []
+      for (let i = 0; i < count; i++) {
+        arr.push(fn)
+      }
+      const stack = compose(arr)
+
+      stack({}).then(() => deferred.resolve())
+    },
+    {
+      defer: true
     }
-    const stack = compose(arr)
+  )
+  .add(
+    'trek-middleware',
+    deferred => {
+      const logic = () => Promise.resolve(true)
 
-    bench(`(fn * ${count})`, done => {
-      stack({}).then(done, done)
-    })
-  }
-})
+      const fn = (ctx, next) => {
+        return logic().then(next).then(logic)
+      }
 
-suite('trek-middleware', () => {
-  set('type', 'adaptive')
-  set('mintime', 1000)
-  set('delay', 100)
-
-  const logic = () => Promise.resolve(true)
-
-  const fn = (ctx, next) => {
-    return logic().then(next).then(logic)
-  }
-
-  for (let exp = 0; exp <= 13; exp++) {
-    const count = Math.pow(2, exp)
-    const middleware = new Middleware()
-    for (let i = 0; i < count; i++) {
-      middleware.push(fn)
+      const count = Math.pow(2, EXP)
+      const middleware = new Middleware()
+      for (let i = 0; i < count; i++) {
+        middleware.push(fn)
+      }
+      middleware.compose({}).then(() => deferred.resolve())
+    },
+    {
+      defer: true
     }
-    bench(`(fn * ${count})`, done => {
-      middleware.compose({}).then(done, done)
-    })
-  }
-})
+  )
+  .on('cycle', event => {
+    console.log(String(event.target))
+  })
+  .on('complete', function() {
+    console.log('Fastest is ' + this.filter('fastest').map('name'))
+  })
+  .run({
+    async: true
+  })

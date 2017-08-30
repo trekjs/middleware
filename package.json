@@ -20,15 +20,15 @@
     "node": ">=6"
   },
   "scripts": {
-    "bench": "matcha benchmarks",
+    "bench": "node benchmarks/index.js",
     "test": "nyc ava"
   },
   "devDependencies": {
-    "ava": "0.21.0",
+    "ava": "0.22.0",
+    "benchmark": "2.1.4",
     "co": "4.6.0",
     "koa-compose": "4.0.0",
-    "matcha": "0.7.0",
-    "nyc": "11.0.3"
+    "nyc": "11.1.0"
   },
   "nyc": {
     "reporter": [
