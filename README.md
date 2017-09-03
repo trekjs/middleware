@@ -49,7 +49,7 @@ middleware.compose(ctx).then(() => {
 $ npm run bench
 ```
 
-Resoults from https://travis-ci.org/trekjs/middleware.
+Results from https://travis-ci.org/trekjs/middleware.
 
 ```
 1024 middlewares
