@@ -22,7 +22,7 @@ module.exports = class Middleware extends Array {
     )
   }
 
-  compose(context, last) {
-    return Promise.resolve().then(() =>  this.next(context, last, 0))
+  async compose(context, last) {
+    return this.next(context, last, 0)
   }
 }
