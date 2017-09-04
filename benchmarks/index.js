@@ -17,7 +17,9 @@ suite
       const logic = () => Promise.resolve(true)
 
       const fn = (ctx, next) => {
-        return logic().then(next).then(logic)
+        return logic()
+          .then(next)
+          .then(logic)
       }
 
       const count = Math.pow(2, EXP)
@@ -25,9 +27,7 @@ suite
       for (let i = 0; i < count; i++) {
         arr.push(fn)
       }
-      const stack = compose(arr)
-
-      stack({}).then(() => deferred.resolve())
+      compose(arr)({}).then(() => deferred.resolve())
     },
     {
       defer: true
@@ -39,7 +39,9 @@ suite
       const logic = () => Promise.resolve(true)
 
       const fn = (ctx, next) => {
-        return logic().then(next).then(logic)
+        return logic()
+          .then(next)
+          .then(logic)
       }
 
       const count = Math.pow(2, EXP)
